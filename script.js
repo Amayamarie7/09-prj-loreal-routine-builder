@@ -65,29 +65,37 @@ function displayProducts(products) {
   });
 }
 
-// Function to save selected products to local storage
+// Function to save selected products to local storage or fallback
 function saveSelectedProducts() {
-  localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
+  try {
+    localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
+  } catch (error) {
+    console.warn("LocalStorage is not available. Data will not persist.");
+  }
 }
 
-// Function to load selected products from local storage
+// Function to load selected products from local storage or fallback
 function loadSelectedProducts() {
-  const savedProducts = localStorage.getItem("selectedProducts");
-  if (savedProducts) {
-    selectedProducts = JSON.parse(savedProducts);
-    updateSelectedProductsList();
-    // Highlight selected product cards
-    const productCards = document.querySelectorAll(".product-card");
-    selectedProducts.forEach((prod) => {
-      Array.from(productCards).forEach((card) => {
-        if (
-          card.querySelector("h3").textContent === prod.name &&
-          card.querySelector("p").textContent === prod.brand
-        ) {
-          card.classList.add("selected");
-        }
+  try {
+    const savedProducts = localStorage.getItem("selectedProducts");
+    if (savedProducts) {
+      selectedProducts = JSON.parse(savedProducts);
+      updateSelectedProductsList();
+      // Highlight selected product cards
+      const productCards = document.querySelectorAll(".product-card");
+      selectedProducts.forEach((prod) => {
+        Array.from(productCards).forEach((card) => {
+          if (
+            card.querySelector("h3").textContent === prod.name &&
+            card.querySelector("p").textContent === prod.brand
+          ) {
+            card.classList.add("selected");
+          }
+        });
       });
-    });
+    }
+  } catch (error) {
+    console.warn("LocalStorage is not available. Data will not persist.");
   }
 }
 
