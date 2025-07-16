@@ -194,6 +194,19 @@ if (generateRoutineBtn) {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${OPENAI_API_KEY}`,
+            "alt-svc": 'h3=":443"; ma=86400',
+            "cf-ray": "95fe6c4f21c5a4d6-mia",
+            connection: "keep-alive",
+            "content-length": "12",
+            "content-type": "text/plain;charset=utf-8",
+            date: "wed, 16 jul 2025 03:30:49 gmt",
+            nel: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}',
+            "report-to":
+              '{"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=d93hlodujeypzkhnhhp0lywspat1yeoaal%2fqffwhfbzzmmsh1ipqgrq%2b8urzkdarbzoukicesmsmltypib69dhyfk9uhuatb2lfaxi8%2ft4xagv71nbrf8tu3mli9zayi0dcsnnu81epxzt0kmutttzgzmeekwdjkmwttsfny5xsejh2t7e6a"}],"group":"cf-nel","max_age":604800}',
+            server: "cloudflare",
+            "server-timing":
+              'cfl4;desc="?proto=tcp&rtt=929&min_rtt=902&rtt_var=289&sent=5&recv=8&lost=0&retrans=0&sent_bytes=3030&recv_bytes=3852&delivery_rate=3210643&cwnd=253&unsent_bytes=0&cid=2c8df491993dd08d&ts=326&x=0"',
+            vary: "accept-encoding",
           },
           body: JSON.stringify({
             model: "gpt-4o",
